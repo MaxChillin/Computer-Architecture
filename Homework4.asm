@@ -14,9 +14,9 @@
 #		floating point number instructions
 #	d. Print out the result as a decimal floating point number.
 #######################################################
-#   ___        __   ___     __
-#  ||  \\    //\\    ||     //\\
-# ||_//  // --\\  ||   // --\\ segment
+#   ___     __   ___     __
+#  || \\   //\\   ||    //\\
+#  ||_//  //--\\  ||   //--\\ segment
 #
 # ...the variables
 .data
@@ -34,9 +34,9 @@ five: .float 5
 nine: .float 9
 
 #######################################################
-#   ___  ___   _    _   ___
-#    ||    ||_     \\//     ||
-#   ||    ||__   //\\     ||  segment.
+#  ___  ___   _    _  ___
+#   ||  ||_    \\//    ||
+#   ||  ||__   //\\    ||  segment.
 #
 # ...the code.
 .text
