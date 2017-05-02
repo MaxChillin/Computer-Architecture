@@ -16,9 +16,9 @@
 #	"You will FAIL this course!" if all answers are N.  
 #	Show test runs for each of the possible outputs.
 #######################################################
-#   ___        __   ___    __
-#  ||  \\    //\\    ||     //\\
-# ||_//  // --\\  ||   // --\\ segment
+#   ___     __   ___     __
+#  || \\   //\\   ||    //\\
+#  ||_//  //--\\  ||   //--\\ segment
 #
 # ...the variables
 .data
@@ -31,9 +31,9 @@ failMessage: .asciiz "You will FAIL this course!"
 newLine: .asciiz "\n"
 
 #######################################################
-#   ___  ___   _    _______
-#    ||    ||_     \\/ /    ||
-#   ||    ||__  / /\\     ||  segment.
+#   ___   ___   _  __  _____
+#    ||  ||_    \\//    ||
+#    ||  ||__   //\\    ||  segment.
 #
 # ...the code.
 .text
@@ -44,65 +44,65 @@ addi $t5, $zero, 1	#  This sets the 5th temperary registers to 1 repectively
 addi $t6, $zero, -1	#  This sets the 6th and 7th temperary registers to 2 and -1 repectively
 addi $t7, $zero, 2	#	in order to check if the user hits "cancel" or the red "X"
 #######################################################
-q1:			#
+q1:			            #
 la $a0, question1		#  This displays the 1st question
-li $v0, 50		#
-syscall			#
-move $t0, $a0		#
+li $v0, 50		      #
+syscall			        #
+move $t0, $a0		    #
 beq $t0, $t7, q1		# This is the check if they hit cancel. If so it repeats the question
 beq $t0, $t6, q1		# This is the check if they hit the red X. If so it repeats the question
 #######################################################
-q2:			#
-la $a0, question2	#   This displays the 2nd question
-li $v0, 50		#
-syscall			#
-move $t1, $a0		#
-beq $t1, $t7, q2 	# This is the check if they hit cancel. If so it repeats the question
+q2:			            #
+la $a0, question2	  #   This displays the 2nd question
+li $v0, 50		      #
+syscall			        #
+move $t1, $a0		    #
+beq $t1, $t7, q2 	  # This is the check if they hit cancel. If so it repeats the question
 beq $t1, $t6, q2		# This is the check if they hit the red X. If so it repeats the question
 #######################################################
-q3:			#
-la $a0, question3	# This displays the 3rd question
-li $v0, 50		#
-syscall			#
-move $t2, $a0		#
-beq $t2, $t7, q3 	# This is the check if they hit cancel. If so it repeats the question
+q3:			            #
+la $a0, question3	  # This displays the 3rd question
+li $v0, 50		      #
+syscall			        #
+move $t2, $a0		    #
+beq $t2, $t7, q3 	  # This is the check if they hit cancel. If so it repeats the question
 beq $t2, $t6, q3		# This is the check if they hit the red X. If so it repeats the question
 #######################################################
 addi $t4, $zero, 1	# 
-and $t3, $t0, $t1	#   Test for failure
-and $t3, $t3, $t2	#
+and $t3, $t0, $t1	  #   Test for failure
+and $t3, $t3, $t2	  #
 beq $t3, $t4, fail	#
 #######################################################
 or $t3, $t0, $zero	# 
-beq $t3, $t5, end	#
+beq $t3, $t5, end	  #
 or $t3, $t3, $t1		#   Test for pass
-beq $t3, $t5, end	#
-or $t3, $t3, $t2	#
+beq $t3, $t5, end	  #
+or $t3, $t3, $t2	  #
 beq $t3, $t5, pass 	#
-j well			#
+j well			        #
 #######################################################
-fail:			#
+fail:			          #
 la $a0, failMessage	#   This displays the message "You will FAIL this course!"
 addi $a1, $zero, 0	#
-li $v0, 55		#
-syscall			#
-j end			#
+li $v0, 55		      #
+syscall			        #
+j end			          #
 #######################################################
-pass:			#
+pass:			          #
 la $a0, passMessage	#   This displays the message "You will Pass this course!"
 addi $a1, $zero, 1	#
-li $v0, 55		#
-syscall			#
-j end			#
+li $v0, 55		      #
+syscall			        #
+j end			          #
 #######################################################
-well:			#
+well:			          #
 la $a0, wellMessage	#   This displays the message "You will DO WELL!"
 addi $a1, $zero, 1	#
-li $v0, 55		#
-syscall			#
-j end			#
+li $v0, 55		      #
+syscall			        #
+j end			          #
 #######################################################
-end:			#			
-li $v0, 10		# This command tells the system to exit the program
-syscall			#
+end:			          #			
+li $v0, 10		      # This command tells the system to exit the program
+syscall			        #
 #######################################################
